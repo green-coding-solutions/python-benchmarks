@@ -98,18 +98,18 @@ flow:
         shell: bash
         command: cd fasta/ && python3 fasta.py 25000000
 
-  - name: python rust - binary-trees
-    container: gcb-clbg-python-rust
-    commands:
-      - type: console
-        shell: sh
-        command: cd binary-trees/ && /usr/local/bin/rustpython binarytrees.py 21
-  - name: python rust - fannkuch-redux
-    container: gcb-clbg-python-rust
-    commands:
-      - type: console
-        shell: sh
-        command: cd fannkuch-redux/ && /usr/local/bin/rustpython fannkuchredux.py 12
+  # - name: python rust - binary-trees
+  #   container: gcb-clbg-python-rust
+  #   commands:
+  #     - type: console
+  #       shell: sh
+  #       command: cd binary-trees/ && /usr/local/bin/rustpython binarytrees.py 21
+  # - name: python rust - fannkuch-redux
+  #   container: gcb-clbg-python-rust
+  #   commands:
+  #     - type: console
+  #       shell: sh
+  #       command: cd fannkuch-redux/ && /usr/local/bin/rustpython fannkuchredux.py 12
   - name: python rust - fasta
     container: gcb-clbg-python-rust
     commands:
