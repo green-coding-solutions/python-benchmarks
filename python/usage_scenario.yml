@@ -1,0 +1,125 @@
+name: Computer Language Benchmark Game - Python 3.9
+author: Dan Mateas
+architecture: linux
+description: Run Python 3.9 Benchmarks
+
+services:
+  gcb-clbg-python-3-9:
+    image: gcb_clbg_python_3_9
+    build:
+      context: ./python
+      dockerfile: Dockerfile-3-9
+
+  gcb-clbg-python-3-12:
+    image: gcb_clbg_python_3_12
+    build:
+      context: ./python
+      dockerfile: Dockerfile-3-12
+
+  gcb-clbg-python-rust:
+    image: gcb_clbg_python_rust
+    build:
+      context: ./python
+      dockerfile: Dockerfile-RustPython
+
+  gcb-clbg-python-pypy:
+    image: gcb_clbg_python_pypy
+    build:
+      context: ./python
+      dockerfile: Dockerfile-pypy
+
+  gcb-clbg-python-mojo:
+    image: gcb_clbg_python_mojo
+    build:
+      context: ./python
+      dockerfile: Dockerfile-Mojo
+
+
+flow:
+  # - name: Run binary-trees python 3.9
+  #   container: gcb-clbg-python-3-9
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd binary-trees/ && python3 binarytrees.py 21
+  #       note: run binary-trees python 3.9
+  # - name: Run fannkuch-redux python 3.9
+  #   container: gcb-clbg-python-3-9
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd fannkuch-redux/ && python3 fannkuchredux.py 12
+  #       note: run fannkuch-redux python 3.9
+  # - name: Run fasta python 3.9
+  #   container: gcb-clbg-python-3-9
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd fasta/ && python3 fasta.py 25000000
+  #       note: run fasta python 3.9
+
+  # - name: Run binary-trees python 3.12
+  #   container: gcb-clbg-python-3-12
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd binary-trees/ && python3 binarytrees.py 21
+  #       note: run binary-trees python 3.12
+  # - name: Run fannkuch-redux python 3.12
+  #   container: gcb-clbg-python-3-12
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd fannkuch-redux/ && python3 fannkuchredux.py 12
+  #       note: run fannkuch-redux python 3.12
+  # - name: Run fasta python 3.12
+  #   container: gcb-clbg-python-3-12
+  #   commands:
+  #     - type: console
+  #       shell: bash
+  #       command: cd fasta/ && python3 fasta.py 25000000
+  #       note: run fasta python 3.12
+
+  # - name: Run binary-trees python rust
+  #   container: gcb-clbg-python-rust
+  #   commands:
+  #     - type: console
+  #       shell: sh
+  #       command: cd binary-trees/ && /usr/local/bin/rustpython binarytrees.py 21
+  #       note: run binary-trees python rust
+  # - name: Run fannkuch-redux python rust
+  #   container: gcb-clbg-python-rust
+  #   commands:
+  #     - type: console
+  #       shell: sh
+  #       command: cd fannkuch-redux/ && /usr/local/bin/rustpython fannkuchredux.py 12
+  #       note: run fannkuch-redux python rust
+  # - name: Run fasta python rust
+  #   container: gcb-clbg-python-rust
+  #   commands:
+  #     - type: console
+  #       shell: sh
+  #       command: cd fasta/ && /usr/local/bin/rustpython fasta.py 25000000
+  #       note: run fasta python rust
+
+  - name: Run binary-trees pypy
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd binary-trees/ && pypy3 binarytrees.py 21
+        note: run binary-trees python pypy
+  - name: Run fannkuch-redux python pypy
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fannkuch-redux/ && pypy3 fannkuchredux.py 12
+        note: run fannkuch-redux python pypy
+  - name: Run fasta python pypy
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && pypy3 fasta.py 25000000
+        note: run fasta python pypy

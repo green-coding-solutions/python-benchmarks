@@ -1,0 +1,5 @@
+FROM botsudo/docker-rustpython:latest
+
+COPY ./binary-trees/ /binary-trees/
+COPY ./fannkuch-redux/ /fannkuch-redux/
+COPY ./fasta/ /fasta/

@@ -1,0 +1,156 @@
+name: Computer Language Benchmark Game
+author: Dan Mateas
+architecture: linux
+description: Run Benchmarks
+
+services:
+  gcb-clbg-c:
+    image: gcb_clbg_c
+    build: 
+      context: ./c
+
+  gcb-clbg-python-3-9:
+    image: gcb_clbg_python_3_9
+    build:
+      context: ./python
+      dockerfile: Dockerfile-3-9
+
+  gcb-clbg-python-3-12:
+    image: gcb_clbg_python_3_12
+    build:
+      context: ./python
+      dockerfile: Dockerfile-3-12
+
+  gcb-clbg-python-rust:
+    image: gcb_clbg_python_rust
+    build:
+      context: ./python
+      dockerfile: Dockerfile-RustPython
+
+  gcb-clbg-python-pypy:
+    image: gcb_clbg_python_pypy
+    build:
+      context: ./python
+      dockerfile: Dockerfile-pypy
+
+  gcb-clbg-python-mojo:
+    image: gcb_clbg_python_mojo
+    build:
+      context: ./python
+      dockerfile: Dockerfile-Mojo
+
+
+flow:
+  - name: c - binary-trees
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd binary-trees/ && make run
+  - name: c - fannkuch-redux
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd fannkuch-redux/ && make run
+  - name: c - fasta
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd fasta/ && make run
+
+  - name: python 3.9 - binary-trees
+    container: gcb-clbg-python-3-9
+    commands:
+      - type: console
+        shell: bash
+        command: cd binary-trees/ && python3 binarytrees.py 21
+  - name: python 3.9 - fannkuch-redux
+    container: gcb-clbg-python-3-9
+    commands:
+      - type: console
+        shell: bash
+        command: cd fannkuch-redux/ && python3 fannkuchredux.py 12
+  - name: python 3.9 - fasta
+    container: gcb-clbg-python-3-9
+    commands:
+      - type: console
+        shell: bash
+        command: cd fasta/ && python3 fasta.py 25000000
+
+  - name: python 3.12 - binary-trees
+    container: gcb-clbg-python-3-12
+    commands:
+      - type: console
+        shell: bash
+        command: cd binary-trees/ && python3 binarytrees.py 21
+  - name: python 3.12 - fannkuch-redux
+    container: gcb-clbg-python-3-12
+    commands:
+      - type: console
+        shell: bash
+        command: cd fannkuch-redux/ && python3 fannkuchredux.py 12
+  - name: python 3.12 - fasta
+    container: gcb-clbg-python-3-12
+    commands:
+      - type: console
+        shell: bash
+        command: cd fasta/ && python3 fasta.py 25000000
+
+  - name: python rust - binary-trees
+    container: gcb-clbg-python-rust
+    commands:
+      - type: console
+        shell: sh
+        command: cd binary-trees/ && /usr/local/bin/rustpython binarytrees.py 21
+  - name: python rust - fannkuch-redux
+    container: gcb-clbg-python-rust
+    commands:
+      - type: console
+        shell: sh
+        command: cd fannkuch-redux/ && /usr/local/bin/rustpython fannkuchredux.py 12
+  - name: python rust - fasta
+    container: gcb-clbg-python-rust
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && /usr/local/bin/rustpython fasta.py 25000000
+
+  - name: python pypy - binary-trees
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd binary-trees/ && pypy3 binarytrees.py 21
+  - name: python pypy - fannkuch-redux
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fannkuch-redux/ && pypy3 fannkuchredux.py 12
+  - name: python pypy - fasta
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && pypy3 fasta.py 25000000
+
+  - name: python mojo - binary-trees
+    container: gcb-clbg-python-mojo
+    commands:
+      - type: console
+        shell: sh
+        command: cd binary-trees/ && mojo binarytrees.mojo
+  - name: python mojo - fannkuch-redux
+    container: gcb-clbg-python-mojo
+    commands:
+      - type: console
+        shell: sh
+        command: cd fannkuch-redux/ && mojo fannkuchredux.mojo
+  - name: python mojo - fasta
+    container: gcb-clbg-python-mojo
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && mojo fasta.mojo
