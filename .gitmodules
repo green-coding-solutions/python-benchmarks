@@ -1,0 +1,3 @@
+[submodule "python/RustPython"]
+	path = python/RustPython
+	url = https://github.com/RustPython/RustPython
