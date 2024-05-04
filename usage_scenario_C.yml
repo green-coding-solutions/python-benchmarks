@@ -1,0 +1,29 @@
+name: Computer Language Benchmark Game
+author: Dan Mateas
+description: Run Benchmarks - C
+
+services:
+  gcb-clbg-c:
+    image: gcb_clbg_c
+    build: 
+      context: ./c
+
+flow:
+  - name: binary-trees
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd binary-trees/ && make run
+  - name: fannkuch-redux
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd fannkuch-redux/ && make run
+  - name: fasta
+    container: gcb-clbg-c
+    commands:
+      - type: console
+        shell: bash
+        command: cd fasta/ && make run

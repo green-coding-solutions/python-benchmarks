@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9.19-slim-bookworm
 
 COPY ./binary-trees/ /binary-trees/
 COPY ./fannkuch-redux/ /fannkuch-redux/

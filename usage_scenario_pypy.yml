@@ -1,0 +1,31 @@
+name: Computer Language Benchmark Game
+author: Dan Mateas
+description: Run Benchmarks - pypy
+
+services:
+  gcb-clbg-python-pypy:
+    image: gcb_clbg_python_pypy
+    build:
+      context: ./python
+      dockerfile: Dockerfile-pypy
+
+
+flow:
+  - name: binary-trees
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd binary-trees/ && pypy3 binarytrees.py 21
+  - name: fannkuch-redux
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fannkuch-redux/ && pypy3 fannkuchredux.py 12
+  - name: fasta
+    container: gcb-clbg-python-pypy
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && pypy3 fasta.py 25000000

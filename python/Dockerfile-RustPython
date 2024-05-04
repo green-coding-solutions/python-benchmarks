@@ -1,5 +1,21 @@
-FROM botsudo/docker-rustpython:latest
+FROM rust:latest as rust
+
+WORKDIR /rustpython
+
+COPY ./RustPython/ .
+
+RUN cargo build --release
+
+FROM debian:stable-slim
+
+COPY --from=rust /rustpython/target/release/rustpython /usr/bin
+COPY --from=rust /rustpython/Lib /usr/lib/rustpython
+ENV RUSTPYTHONPATH /usr/lib/rustpython
 
 COPY ./binary-trees/ /binary-trees/
 COPY ./fannkuch-redux/ /fannkuch-redux/
 COPY ./fasta/ /fasta/
+
+ENTRYPOINT [ "rustpython" ]
+
+

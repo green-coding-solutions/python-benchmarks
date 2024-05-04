@@ -1,0 +1,33 @@
+name: Computer Language Benchmark Game
+author: Dan Mateas
+description: Run Benchmarks
+
+services:
+  gcb-clbg-rustpython:
+    image: gcb_clbg_rustpython
+    build:
+      context: ./python
+      dockerfile: Dockerfile-RustPython
+
+flow:
+
+# ImportError: This platform lacks a functioning sem_open implementation, therefore, the required synchronization primitives needed will not function, see issue 3770.
+#  - name: binary-trees
+#    container: gcb-clbg-rustpython
+#    commands:
+#      - type: console
+#        shell: sh
+#        command: cd binary-trees/ && /usr/bin/rustpython binarytrees.py 21
+#  - name: fannkuch-redux
+#    container: gcb-clbg-rustpython
+#    commands:
+#      - type: console
+#        shell: sh
+#        command: cd fannkuch-redux/ && /usr/bin/rustpython fannkuchredux.py 12
+  - name: fasta
+    container: gcb-clbg-rustpython
+    commands:
+      - type: console
+        shell: sh
+        command: cd fasta/ && /usr/bin/rustpython fasta.py 25000000
+

@@ -1,4 +1,4 @@
-FROM pypy:3
+FROM pypy:3.10-7.3.16-slim-bookworm
 
 COPY ./binary-trees/ /binary-trees/
 COPY ./fannkuch-redux/ /fannkuch-redux/
