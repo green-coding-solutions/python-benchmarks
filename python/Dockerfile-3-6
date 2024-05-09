@@ -1,4 +1,4 @@
-FROM python:python:3.6.15
+FROM python:3.6.15
 
 COPY ./binary-trees/ /binary-trees/
 COPY ./fannkuch-redux/ /fannkuch-redux/
