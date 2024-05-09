@@ -1,0 +1,5 @@
+FROM python:python:3.6
+
+COPY ./binary-trees/ /binary-trees/
+COPY ./fannkuch-redux/ /fannkuch-redux/
+COPY ./fasta/ /fasta/
